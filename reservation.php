@@ -92,7 +92,22 @@
       </div>
     </div>
   </div>
+  <?php
+       $rsrv="SELECT reservations.ID,
+       client.name,
+       client.last_name,
+        activities.title,
+        reservations.DATE_RESERVATION,
+        reservations.STATUT
+        FROM 
+        reservations 
+        INNER JOIN 
+        client ON  reservations.ID_CLIENT =client.id
+       INNER JOIN 
+       activities ON reservations.ID_ACTIVITIES=activities.id ";
 
+$result = mysqli_query($db ,$rsrv);
+?>
         
   <div class=" some relative flex flex-col w-full h-[80vh] overflow-scroll text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
     <table class="w-full text-left table-auto min-w-max">
@@ -129,7 +144,19 @@
       <tbody>
        
       
-          
+          <td class="p-4 py-5">
+            <p class="block font-semibold text-sm text-slate-800">  <?php   echo $row["name"]. " ".$row["last_name"] ?></p>
+          </td>
+          <td class="p-4 py-5">
+            <p class="block text-sm text-slate-800"><?php echo $row["title"]?></p>
+          </td>
+          <td class="p-4 py-5">
+            <p class="block text-sm text-slate-800">    <?php echo $row["DATE_RESERVATION"]?></p>
+          </td>
+          <td class="p-4 py-5">
+            <p class="block text-sm text-slate-800">   <?php echo $row["STATUT"]?></p>
+          </td>
+         
  
           <td class="p-4 py-5">
               <div class="block text-center">
